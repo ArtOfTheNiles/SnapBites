@@ -1,0 +1,21 @@
+{
+  "name": "SnapBites",
+  "version": "0.0.1",
+  "description": "<b>SnapBites</b> is a nutrition tracking app that seeks to simplify the process of logging your meals so you can enjoy the food!</br> We aim to make the application experience as streamlined as possible while helping you track and achieve your goals",
+  "main": "./client/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArtOfTheNiles/SnapBites.git"
+  },
+  "keywords": ["nutrition", "tracker", "SnapBites"],
+  "authors": ["Niles Bontrager", "Nolan Marshke"],
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/ArtOfTheNiles/SnapBites/issues"
+  },
+  "homepage": "https://github.com/ArtOfTheNiles/SnapBites#readme"
+}
