@@ -48,7 +48,7 @@ For those interested, here are ways that you can contribute to the project:
 
 ## Credits
 
-App design and development by [Niles Bontrager](https://github.com/ArtOfTheNiles) and [Nolan Marshke](about:ComingSoon)
+App design and development by [Niles Bontrager](https://github.com/ArtOfTheNiles) and [Nolan Marshke](https://ComingSoon)
 
 
 
