@@ -24,6 +24,7 @@ CREATE TABLE "meal" (
   "proteins" integer,
   "fiber" integer,
   "time_eaten" datetime,
+  "is_shareable" boolean,
   "favorite" integer,
   "profile" integer
 );
@@ -46,5 +47,4 @@ ALTER TABLE "profile" ADD FOREIGN KEY ("id") REFERENCES "goals" ("profile");
 ALTER TABLE "profile" ADD FOREIGN KEY ("id") REFERENCES "macro_budget" ("profile");
 ALTER TABLE "profile" ADD FOREIGN KEY ("id") REFERENCES "favorites" ("profile");
 ALTER TABLE "profile" ADD FOREIGN KEY ("id") REFERENCES "meal" ("profile");
-
 ALTER TABLE "favorites" ADD FOREIGN KEY ("id") REFERENCES "meal" ("favorite");
