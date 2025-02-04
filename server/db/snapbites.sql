@@ -7,22 +7,22 @@ CREATE TABLE "profile" (
 CREATE TABLE "macro_budget" (
   "id" integer PRIMARY KEY,
   "profile" integer,
-  "calories" number,
-  "carbohydrates" number,
-  "fats" number,
-  "proteins" number
+  "calories" integer,
+  "carbohydrates" integer,
+  "fats" integer,
+  "proteins" integer
 );
 
 CREATE TABLE "meal" (
   "id" integer PRIMARY KEY,
   "image_url" varchar(MAX),
   "name" varchar(255),
-  "weight_est" number,
-  "calories" number,
-  "carbohydrates" number,
-  "fats" number,
-  "proteins" number,
-  "fiber" number,
+  "weight_est" integer,
+  "calories" integer,
+  "carbohydrates" integer,
+  "fats" integer,
+  "proteins" integer,
+  "fiber" integer,
   "time_eaten" datetime,
   "favorite" integer,
   "profile" integer
