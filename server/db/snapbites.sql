@@ -10,7 +10,7 @@ CREATE TABLE "macro_budget" (
   "calories" number,
   "carbohydrates" number,
   "fats" number,
-  "proteins" number
+  "proteins" number,
 );
 
 CREATE TABLE "meal" (
