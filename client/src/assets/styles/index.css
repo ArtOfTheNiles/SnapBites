@@ -1,11 +1,20 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Outfit, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
+  /* Color variables */
+  --base-dark-gray: #242424;
+  --base-light-gray: #c9c9c9;
+  --midnight-green: #004e64;
+  --pacific-cyan: #00a5cf;
+  --aquamarine: #9fffcb;
+  --persian-green: #25a18e;
+  --light-green: #7ae582;
+
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: rgb(255, 255, 255, 0.9);
+  background-color: var(--base-dark-gray);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
