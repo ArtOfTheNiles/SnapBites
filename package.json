@@ -45,6 +45,7 @@
   },
   "homepage": "https://github.com/ArtOfTheNiles/SnapBites#readme",
   "dependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/dotenv": "^6.1.1",
     "@types/sequelize": "^4.28.20",
     "dotenv": "^16.4.7",
