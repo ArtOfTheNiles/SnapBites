@@ -1,12 +1,20 @@
 import './assets/styles/App.css'
+import { FalseFooter } from './components/FalseFooter'
+import { FalseHeader } from './components/FalseHeader'
 import Header from './components/Header'
-import MealCard from './components/MealCard'
+import LogMeal from './pages/LogMeal'
+import MealHistory from './pages/MealHistory'
+import Profile from './pages/Profile'
 
 function App() {
   return (
     <>
       <Header />
-      <MealCard />
+      <FalseHeader />
+      <LogMeal />
+      <MealHistory />
+      <Profile />
+      <FalseFooter />
     </>
   )
 }

@@ -4,6 +4,6 @@ import '../assets/styles/LogMealButton.css'
 
 export default function LogMealButton() {
   return (
-    <button className="log-meal-button">&copy;</button>
+    <button className="log-meal-button">+</button>
   )
 }
