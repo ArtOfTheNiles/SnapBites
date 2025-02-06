@@ -1,0 +1,8 @@
+#log-meal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  background-color: var(--midnight-green);
+  border-radius: 5px;
+}

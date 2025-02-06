@@ -2,7 +2,7 @@
 // Should have added flair, but be repeatable throughout the app
 import '../assets/styles/LogMealButton.css'
 
-export default function LogMealButton() {
+export default function GoToLogMealButton() {
   return (
     <button className="log-meal-button">+</button>
   )
