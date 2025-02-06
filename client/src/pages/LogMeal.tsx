@@ -1,6 +1,7 @@
 // This is the Log Meal page, where users will log their meal information
 import GoToLogMealButton from "../components/GoToLogMealButton";
 import '../assets/styles/LogMeal.css'
+import MealChart from "../components/MealChart";
 
 export default function LogMeal() {
   return (
@@ -15,6 +16,8 @@ export default function LogMeal() {
 
         <label htmlFor="calories">Calories:</label>
         <input type="number" id="calories" name="calories" required />
+
+        <MealChart />
 
         <label htmlFor="date">Date:</label>
         <input type="date" id="date" name="date" required />
