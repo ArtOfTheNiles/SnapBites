@@ -2,6 +2,8 @@
   font-family: Outfit, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  --header-height: 6.5rem;
+
 
   /* Color variables */
   --base-dark-gray: #242424;
@@ -11,6 +13,7 @@
   --aquamarine: #9fffcb;
   --persian-green: #25a18e;
   --light-green: #7ae582;
+
 
   color-scheme: light dark;
   color: rgb(255, 255, 255, 0.9);
@@ -33,6 +36,7 @@ a:hover {
 
 body {
   margin: 0;
+  padding-top: var(--header-height);
   display: flex;
   place-items: center;
   min-width: 320px;
