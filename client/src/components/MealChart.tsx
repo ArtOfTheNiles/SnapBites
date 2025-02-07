@@ -19,23 +19,54 @@ export default function MealChart() {
   const [fiber, setFiber] = React.useState(0);
 
   const handleSliderChange = (sliderID: string) => (event: Event, newValue: number | number[]) => {
-    switch (sliderID) {
-      case 'protein-slider':
-        setProtein(newValue as number);
-        break;
-      case 'fat-slider':
-        setFat(newValue as number);
-        break;
-      case 'carb-slider':
-        setCarbs(newValue as number);
-        break;
-      case 'fiber-slider':
-        setFiber(newValue as number);
-        break;
+    const total = protein + fat + carbs + fiber;
+    if(total >= 100) {
+      // TODO separate view from logic 
+      switch (sliderID) {
+        case 'protein-slider':
+          setProtein(newValue as number);
+          setFat(Math.floor(fat - (fat / 100)));
+          setCarbs(Math.floor(carbs - (carbs / 100)));
+          setFiber(Math.floor(fiber - (fiber / 100)));
+          break;
+        case 'fat-slider':
+          setProtein(Math.floor(protein - (protein / 100)));
+          setFat(newValue as number);
+          setCarbs(Math.floor(carbs - (carbs / 100)));
+          setFiber(Math.floor(fiber - (fiber / 100)));
+          break;
+        case 'carb-slider':
+          setProtein(Math.floor(protein - (protein / 100)));
+          setCarbs(newValue as number);
+          setFat(Math.floor(fat - (fat / 100)));
+          setFiber(Math.floor(fiber - (fiber / 100)));
+          break;
+        case 'fiber-slider':
+          setProtein(Math.floor(protein - (protein / 100)));
+          setFat(Math.floor(fat - (fat / 100)));
+          setCarbs(Math.floor(carbs - (carbs / 100)));
+          setFiber(newValue as number);
+          break;
+        }
+    }else{
+      switch (sliderID) {
+        case 'protein-slider':
+          setProtein(newValue as number);
+          break;
+        case 'fat-slider':
+          setFat(newValue as number);
+          break;
+        case 'carb-slider':
+          setCarbs(newValue as number);
+          break;
+        case 'fiber-slider':
+          setFiber(newValue as number);
+          break;
+      }
     }
   }
 
-  console.log(`This is raw values p:${protein} ft:${fat} c:${carbs} fb:${fiber}`);
+  console.log(`This is raw values p:${protein} ft:${fat} c:${carbs} fb:${fiber} total:${protein + fat + carbs + fiber}`);
 
   return (
     <div className="meal-chart">
