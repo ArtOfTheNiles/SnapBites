@@ -1,16 +1,7 @@
-// Trying to make a sub-component for the meal chart
-// Need to find a way to make the chart responsive
 // https://mui.com/material-ui/react-slider/
 
 import React from 'react';
 import Slider from '@mui/material/Slider';
-
-interface Macronutrients {
-  protein: number;
-  fat: number;
-  carbs: number;
-  fiber: number;
-}
 
 export default function MealChart() {
   const [protein, setProtein] = React.useState(0);
@@ -18,7 +9,7 @@ export default function MealChart() {
   const [carbs, setCarbs] = React.useState(0);
   const [fiber, setFiber] = React.useState(0);
 
-  const handleSliderChange = (sliderID: string) => (event: Event, newValue: number | number[]) => {
+  const handleSliderChange = (sliderID: string) => (_event: Event, newValue: number | number[]) => {
     const total = protein + fat + carbs + fiber;
     if(total >= 100) {
       // TODO separate view from logic 
@@ -66,7 +57,7 @@ export default function MealChart() {
     }
   }
 
-  console.log(`This is raw values p:${protein} ft:${fat} c:${carbs} fb:${fiber} total:${protein + fat + carbs + fiber}`);
+  // console.log(`This is raw values p:${protein} ft:${fat} c:${carbs} fb:${fiber} total:${protein + fat + carbs + fiber}`);
 
   return (
     <div className="meal-chart">
