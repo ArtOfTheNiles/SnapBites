@@ -5,6 +5,7 @@ import MealChart from "../components/MealChart";
 
 export default function LogMeal() {
   return (
+    <>
     <div className="log-meal">
       <h1>Log Your Meal</h1>
       <form id="log-meal-form">
@@ -29,5 +30,6 @@ export default function LogMeal() {
       </form>
       <GoToLogMealButton />
     </div>
+    </>
   )
 }
