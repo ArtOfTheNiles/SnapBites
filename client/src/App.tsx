@@ -1,20 +1,14 @@
 import './assets/styles/App.css'
-import { FalseFooter } from './components/FalseFooter'
-import { FalseHeader } from './components/FalseHeader'
+import GoToLogMealButton from './components/GoToLogMealButton'
 import Header from './components/Header'
-import LogMeal from './pages/LogMeal'
-import MealHistory from './pages/MealHistory'
-import Profile from './pages/Profile'
 
 function App() {
   return (
     <>
       <Header />
-      <FalseHeader />
-      <LogMeal />
-      <MealHistory />
-      <Profile />
-      <FalseFooter />
+      <h1 className="App-title">Welcome to SnapBites</h1>
+      <h2 className="App-subtitle">Now track that meal</h2>
+      <GoToLogMealButton />
     </>
   )
 }
