@@ -51,3 +51,5 @@ Goals.init(
         tableName: 'goals',
     }
 )
+
+export default Goals;
