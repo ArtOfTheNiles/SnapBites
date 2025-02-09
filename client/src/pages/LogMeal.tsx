@@ -2,10 +2,13 @@
 import GoToLogMealButton from "../components/GoToLogMealButton";
 import '../assets/styles/LogMeal.css'
 import MealChart from "../components/MealChart";
+import Header from "../components/Header";
 
 export default function LogMeal() {
   return (
     <>
+    <Header />
+    
     <div className="log-meal">
       <h1>Log Your Meal</h1>
       <form id="log-meal-form">
