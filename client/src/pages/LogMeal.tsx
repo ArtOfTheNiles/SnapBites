@@ -1,5 +1,4 @@
 // This is the Log Meal page, where users will log their meal information
-import GoToLogMealButton from "../components/GoToLogMealButton";
 import '../assets/styles/LogMeal.css'
 import MealChart from "../components/MealChart";
 import Header from "../components/Header";
@@ -31,7 +30,7 @@ export default function LogMeal() {
 
         <button type="submit">Log Meal</button>
       </form>
-      <GoToLogMealButton />
+
     </div>
     </>
   )

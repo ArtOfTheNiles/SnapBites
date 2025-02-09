@@ -26,7 +26,9 @@ export default function Header() {
         <Link to="/profile">{
           location.pathname === '/profile' ? null : ( "Profile" )
         }</Link>
-        <GoToLogMealButton />
+        {location.pathname === '/logmeal' ? null : (
+          <GoToLogMealButton />
+        )}
       </span>
       <span className="profile-container">
         <Link to="/profile" className="profile-link">{
