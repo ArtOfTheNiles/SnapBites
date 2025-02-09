@@ -11,8 +11,35 @@ export default function MealChart() {
 
   const handleSliderChange = (sliderID: string) => (_event: Event, newValue: number | number[]) => {
     const total = protein + fat + carbs + fiber;
-    if(total >= 100) {
-      // TODO separate view from logic 
+
+    if(newValue === 100) {
+      switch (sliderID) {
+        case 'protein-slider':
+          setProtein(newValue as number);
+          setFat(0);
+          setCarbs(0);
+          setFiber(0);
+          break;
+        case 'fat-slider':
+          setProtein(0);
+          setFat(newValue as number);
+          setCarbs(0);
+          setFiber(0);
+          break;
+        case 'carb-slider':
+          setProtein(0);
+          setCarbs(newValue as number);
+          setFat(0);
+          setFiber(0);
+          break;
+        case 'fiber-slider':
+          setProtein(0);
+          setFat(0);
+          setCarbs(0);
+          setFiber(newValue as number);
+          break;
+        }
+    }else if(total >= 100) {
       switch (sliderID) {
         case 'protein-slider':
           setProtein(newValue as number);
@@ -61,7 +88,6 @@ export default function MealChart() {
 
   return (
     <div className="meal-chart">
-      <h2>Meal Chart</h2>
       <div className="chart-container">
         <div className="chart">
           <h2>Total: { protein + fat + carbs + fiber }%</h2>
