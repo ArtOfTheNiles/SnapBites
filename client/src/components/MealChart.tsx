@@ -3,13 +3,24 @@
 import React from 'react';
 import Slider from '@mui/material/Slider';
 
-export default function MealChart() {
+export interface MacroSet {
+  protein: number;
+  fat: number;
+  carbs: number;
+  fiber: number;
+}
+
+interface MealChartProps {
+  onMacroChange: (newMacros: MacroSet) => void;
+}
+
+export default function MealChart({ onMacroChange }: MealChartProps) {
   const [protein, setProtein] = React.useState(0);
   const [fat, setFat] = React.useState(0);
   const [carbs, setCarbs] = React.useState(0);
   const [fiber, setFiber] = React.useState(0);
 
-  const handleSliderChange = (sliderID: string) => (_event: Event, newValue: number | number[]) => {
+  const macroSliderHandler = (sliderID: string) => (_event: Event, newValue: number | number[]) => {
     const total = protein + fat + carbs + fiber;
 
     if(newValue === 100) {
@@ -81,6 +92,7 @@ export default function MealChart() {
           setFiber(newValue as number);
           break;
       }
+      onMacroChange({ protein, fat, carbs, fiber });
     }
   }
 
@@ -95,7 +107,7 @@ export default function MealChart() {
           <p>Protein: {protein}%</p>
           <Slider
             value={typeof protein === 'number' ? protein : 0}
-            onChange={handleSliderChange('protein-slider')}
+            onChange={macroSliderHandler('protein-slider')}
             id="protein-slider"
             aria-label="protein-slider"
           />
@@ -103,7 +115,7 @@ export default function MealChart() {
           <p>Fat: {fat}%</p>
           <Slider
             value={typeof fat === 'number' ? fat : 0}
-            onChange={handleSliderChange('fat-slider')}
+            onChange={macroSliderHandler('fat-slider')}
             id="fat-slider"
             aria-label="fat-slider"
           />
@@ -111,7 +123,7 @@ export default function MealChart() {
           <p>Carbs: {carbs}%</p>
           <Slider
             value={typeof carbs === 'number' ? carbs : 0}
-            onChange={handleSliderChange('carb-slider')}
+            onChange={macroSliderHandler('carb-slider')}
             id="carb-slider"
             aria-label="carb-slider"
           />
@@ -119,7 +131,7 @@ export default function MealChart() {
           <p>Fiber: {fiber}%</p>
           <Slider
             value={typeof fiber === 'number' ? fiber : 0}
-            onChange={handleSliderChange('fiber-slider')}
+            onChange={macroSliderHandler('fiber-slider')}
             id="fiber-slider"
             aria-label="fiber-slider"
           />
