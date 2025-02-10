@@ -102,10 +102,11 @@ export default function MealChart({ onMacroChange }: MealChartProps) {
     <div className="meal-chart">
       <div className="chart-container">
         <div className="chart">
-          <h2>Total: { protein + fat + carbs + fiber }%</h2>
+          {/* <h2>Total: { protein + fat + carbs + fiber }%</h2> */}
 
           <p>Protein: {protein}%</p>
           <Slider
+            defaultValue={0}
             value={typeof protein === 'number' ? protein : 0}
             onChange={macroSliderHandler('protein-slider')}
             id="protein-slider"
@@ -114,6 +115,7 @@ export default function MealChart({ onMacroChange }: MealChartProps) {
 
           <p>Fat: {fat}%</p>
           <Slider
+            defaultValue={0}
             value={typeof fat === 'number' ? fat : 0}
             onChange={macroSliderHandler('fat-slider')}
             id="fat-slider"
@@ -122,6 +124,7 @@ export default function MealChart({ onMacroChange }: MealChartProps) {
 
           <p>Carbs: {carbs}%</p>
           <Slider
+            defaultValue={0}
             value={typeof carbs === 'number' ? carbs : 0}
             onChange={macroSliderHandler('carb-slider')}
             id="carb-slider"
@@ -130,6 +133,7 @@ export default function MealChart({ onMacroChange }: MealChartProps) {
 
           <p>Fiber: {fiber}%</p>
           <Slider
+            defaultValue={0}
             value={typeof fiber === 'number' ? fiber : 0}
             onChange={macroSliderHandler('fiber-slider')}
             id="fiber-slider"

@@ -6,20 +6,22 @@ import '../assets/styles/LogMeal.css'
 import MealChart, { MacroSet } from "../components/MealChart";
 import Header from "../components/Header";
 
+const initialFormData = {
+  mealName: "Lunch",
+  weight: 100,
+  calories: 650,
+  date: new Date().toISOString().split("T")[0],
+  time: "12:00",
+  macros: {
+    protein: 0,
+    fat: 0,
+    carbs: 0,
+    fiber: 0
+  } as MacroSet
+};
+
 export default function LogMeal() {
-  const [formData, setFormData] = useState({
-    mealName: "Lunch",
-    weight: 100,
-    calories: 650,
-    date: new Date().toISOString().split("T")[0],
-    time: "12:00",
-    macros: {
-      protein: 0,
-      fat: 0,
-      carbs: 0,
-      fiber: 0
-    } as MacroSet
-  });
+  const [formData, setFormData] = useState(initialFormData);
 
   const handleMacroChange = (newMacros: MacroSet) => {
     setFormData(prev => ({
@@ -38,16 +40,22 @@ export default function LogMeal() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    //TODO - Send the form data to the server
     console.log("Meal logged", formData);
   }
 
+  const handleReset = () => {
+    setFormData(initialFormData);
+  }
+
+  // --------------- TSX ---------------
   return (
     <>
     <Header />
     
     <div className="log-meal">
       <h1>Log Your Meal</h1>
-      <form id="log-meal-form" onSubmit={handleSubmit}>
+      <form id="log-meal-form" onSubmit={handleSubmit} onReset={handleReset}>
         <label htmlFor="mealName">Meal Name:</label>
         <input type="text"
         id="mealName"
@@ -57,29 +65,32 @@ export default function LogMeal() {
         required
         />
 
-        <label htmlFor="weight">Weight (g):</label>
-        <input type="number"
+        <label htmlFor="weight">Weight: {formData.weight}g</label>
+        <Slider 
+        value={formData.weight}
         id="weight"
         name="weight"
-        min="10"
-        max="2000"
-        step="10"
-        defaultValue="100"
-        onChange={handleChange}
-        required
-        />
+        step={25}
+        min={25}
+        max={2000}
+        defaultValue={100}
+        onChange={(_e, value) => setFormData(prev => ({
+           ...prev,
+           weight: value as number }))
+        } />
 
-        <label htmlFor="calories">Calories:</label>
-        <input type="number"
+        <label htmlFor="calories">Calories: {formData.calories}<small>kCal</small></label>
+        <Slider value={formData.calories}
         id="calories"
         name="calories"
-        min="0"
-        max="8000"
-        step="10"
-        defaultValue="650"
-        onChange={handleChange}
-        required
-        />
+        step={10}
+        min={0}
+        max={8000}
+        defaultValue={650}
+        onChange={(_e, value) => setFormData(prev => ({
+           ...prev,
+           calories: value as number }))
+        } />
 
         <MealChart onMacroChange={handleMacroChange} />
 

@@ -9,6 +9,14 @@ import GoToLogMealButton from './GoToLogMealButton';
 export default function Header() {
   const location = useLocation();
 
+  const logMealButtonLogic = () => {
+    if (location.pathname === '/logmeal' || location.pathname === '/login' || location.pathname === '/') {
+      return null;
+    } else {
+      return <GoToLogMealButton />
+    }
+  }
+
   return (
     <header className="header">
       <span className="logo-container">
@@ -17,18 +25,10 @@ export default function Header() {
         <h1 className="logo-bites">Bites</h1>
       </span>
       <span className="nav-container">
-        <Link to="/">{
-          location.pathname === '/' ? null : ( "Home" )
-        }</Link>
-        <Link to="/history">{
-          location.pathname === '/history' ? null : ( "History" )
-        }</Link>
-        <Link to="/profile">{
-          location.pathname === '/profile' ? null : ( "Profile" )
-        }</Link>
-        {location.pathname === '/logmeal' ? null : (
-          <GoToLogMealButton />
-        )}
+        <Link to="/">{location.pathname === '/' ? null : ( "Home" )}</Link>
+        <Link to="/history">{location.pathname === '/history' ? null : ( "History" )}</Link>
+        <Link to="/profile">{location.pathname === '/profile' ? null : ( "Profile" )}</Link>
+        {logMealButtonLogic()}
       </span>
       <span className="profile-container">
         <Link to="/profile" className="profile-link">{
