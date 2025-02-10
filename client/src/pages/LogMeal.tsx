@@ -5,6 +5,22 @@ import Slider from '@mui/material/Slider';
 import '../assets/styles/LogMeal.css'
 import MealChart, { MacroSet } from "../components/MealChart";
 import Header from "../components/Header";
+import { createMeal, DbMeal } from '../api/meal/meal';
+
+const formDataToDbMeal = (formData: typeof initialFormData, profileId: number): DbMeal => {
+  return {
+    id: null,
+    name: formData.mealName,
+    weight_est: formData.weight,
+    calories: formData.calories,
+    carbohydrates: formData.macros.carbs,
+    fats: formData.macros.fat,
+    proteins: formData.macros.protein,
+    fiber: formData.macros.fiber,
+    time_eaten: new Date(`${formData.date}T${formData.time}`),
+    profile: profileId
+  };
+};
 
 const initialFormData = {
   mealName: "Lunch",
@@ -20,6 +36,7 @@ const initialFormData = {
   } as MacroSet
 };
 
+// --------------- TSX ---------------
 export default function LogMeal() {
   const [formData, setFormData] = useState(initialFormData);
 
@@ -40,15 +57,17 @@ export default function LogMeal() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //TODO - Send the form data to the server
-    console.log("Meal logged", formData);
+    //TODO: connect with profile information
+    const outputMeal = formDataToDbMeal(formData, 1);
+    createMeal(outputMeal);
+    console.log("Meal logged", outputMeal);
   }
 
   const handleReset = () => {
     setFormData(initialFormData);
   }
 
-  // --------------- TSX ---------------
+
   return (
     <>
     <Header />
