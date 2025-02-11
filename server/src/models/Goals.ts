@@ -1,6 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
-import sequelize from '../config/connection';
-import Profile from './Profile';
+import sequelize from '../config/connection.js';
+import Profile from './Profile.js';
 
 
 class Goals extends Model {
