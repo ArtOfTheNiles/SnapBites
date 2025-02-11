@@ -1,5 +1,5 @@
 import DbMeal from "../interfaces/meal.interface";
-const API_URL = '/api/meal';
+const API_URL = `${import.meta.env.VITE_API_URL}/api/meal`;
 
 export async function  getMeals (): Promise<DbMeal[]> {
   const response = await fetch(API_URL);

@@ -1,6 +1,6 @@
 import Profile from "../interfaces/profile.interface";
 
-const API_URL = '/api/profile';
+const API_URL = `${import.meta.env.VITE_API_URL}/api/profile`;
 
 export async function createProfile(profile: Profile): Promise<Profile> {
   const response = await fetch(API_URL, {

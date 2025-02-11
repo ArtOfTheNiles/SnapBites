@@ -1,6 +1,6 @@
 import Favorites from "../interfaces/favorite.interface";
 
-const API_URL = '/api/profile/favorite';
+const API_URL = `${import.meta.env.VITE_API_URL}/api/profile/favorite`;
 
 export async function createFavorite(favorite: Favorites): Promise<Favorites> {
   const response = await fetch(API_URL, {

@@ -1,6 +1,6 @@
 import MacroBudget from "../interfaces/budget.interface";
 
-const API_URL = '/api/profile/budget';
+const API_URL = `${import.meta.env.VITE_API_URL}/api/profile/budget`;
 
 export async function createBudget(budget: MacroBudget): Promise<MacroBudget> {
   const response = await fetch(API_URL, {

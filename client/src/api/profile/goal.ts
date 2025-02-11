@@ -1,6 +1,6 @@
 import Goals from "../interfaces/goal.interface";
 
-const API_URL = '/api/profile/goal';
+const API_URL = `${import.meta.env.VITE_API_URL}/api/profile/goal`;
 
 export async function createGoal(goal: Goals): Promise<Goals> {
   const response = await fetch(API_URL, {
