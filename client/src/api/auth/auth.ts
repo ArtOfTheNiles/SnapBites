@@ -1,6 +1,6 @@
-import Profile from "../interfaces/profile.interface";
+import LoginData from "../interfaces/loginData.interface";
 
-export async function login(userInfo: Profile) {
+export async function login(userInfo: LoginData) {
   try {
     const response = await fetch('/auth/login', {
       method: 'POST',
