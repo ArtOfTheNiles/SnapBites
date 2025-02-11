@@ -5,4 +5,5 @@ export default interface MacroBudget {
   carbohydrates: number;
   fat: number;
   protein: number;
+  fiber: number;
 }
