@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAppleWhole, faBowlFood, faBowlRice, faBurger, faCakeCandles, faCarrot, faChampagneGlasses, faCheese, faCookieBite, faDrumstickBite, faFish, faHotdog, faIceCream, faLemon, faPizzaSlice, faShrimp, faStroopwafel } from '@fortawesome/free-solid-svg-icons'
 
-import '../assets/styles/LogMealButton.css'
+import '../assets/styles/logMealButton.css'
 
 const iconList = [ faBowlFood, faCarrot, faLemon, faStroopwafel, faShrimp, faFish, faPizzaSlice, faIceCream, faHotdog, faDrumstickBite, faCookieBite, faCheese, faChampagneGlasses, faCakeCandles, faBowlRice, faAppleWhole, faBurger ]
 

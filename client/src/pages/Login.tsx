@@ -1,48 +1,55 @@
-import React, { useState } from 'react';
-import Header from '../components/Header';
+import { useState, FormEvent, ChangeEvent } from "react";
 
-const Login: React.FC = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+import AuthService from '../authService';
+import { login } from "../api/auth/auth.ts";
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    // Handle login logic here
-    console.log('Email:', username);
-    console.warn('Password:', password);
+const Login = () => {
+  const [loginData, setLoginData] = useState({
+    username: '',
+    password: ''
+  });
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setLoginData({
+      ...loginData,
+      [name]: value
+    });
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      const data = await login(loginData);
+      AuthService.login(data.token);
+    } catch (err) {
+      console.error('Failed to login', err);
+    }
   };
 
   return (
-    <>
-    <Header />
-    <div className="login-container">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
+    <div className='container'>
+      <form className='form' onSubmit={handleSubmit}>
+        <h1>Login</h1>
+        <label >Username</label>
+        <input 
+          type='text'
+          name='username'
+          value={loginData.username || ''}
+          onChange={handleChange}
+        />
+      <label>Password</label>
+        <input 
+          type='password'
+          name='password'
+          value={loginData.password || ''}
+          onChange={handleChange}
+        />
+        <button type='submit'>Login</button>
       </form>
     </div>
-    </>
-  );
+    
+  )
 };
 
 export default Login;

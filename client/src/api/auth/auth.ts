@@ -1,8 +1,9 @@
-import Profile from "../interfaces/profile.interface";
+import LoginData from "../interfaces/loginData.interface";
+const API_URL = `${import.meta.env.VITE_API_URL}`;
 
-const login = async (userInfo: Profile) => {
+export async function login(userInfo: LoginData) {
   try {
-    const response = await fetch('/auth/login', {
+    const response = await fetch(`${API_URL}/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -20,5 +21,3 @@ const login = async (userInfo: Profile) => {
     throw error;
   }
 }
-
-export { login };

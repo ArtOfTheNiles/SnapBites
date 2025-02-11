@@ -1,8 +1,8 @@
 import Profile from "../interfaces/profile.interface";
 
-const API_URL = '/api/profile';
+const API_URL = `${import.meta.env.VITE_API_URL}/api/profile`;
 
-export const createProfile = async (profile: Profile): Promise<Profile> => {
+export async function createProfile(profile: Profile): Promise<Profile> {
   const response = await fetch(API_URL, {
     method: 'POST',
     headers: {
@@ -13,17 +13,17 @@ export const createProfile = async (profile: Profile): Promise<Profile> => {
   return response.json();
 };
 
-export const getProfiles = async (): Promise<Profile[]> => {
+export async function getProfiles(): Promise<Profile[]> {
   const response = await fetch(API_URL);
   return response.json();
 };
 
-export const getProfileById = async (id: number): Promise<Profile> => {
+export async function getProfileById(id: number): Promise<Profile> {
   const response = await fetch(`${API_URL}/${id}`);
   return response.json();
 };
 
-export const updateProfile = async (id: number, profile: Profile): Promise<Profile> => {
+export async function updateProfile(id: number, profile: Profile): Promise<Profile> {
   const response = await fetch(`${API_URL}/${id}`, {
     method: 'PUT',
     headers: {
@@ -34,7 +34,7 @@ export const updateProfile = async (id: number, profile: Profile): Promise<Profi
   return response.json();
 };
 
-export const deleteProfile = async (id: number): Promise<void> => {
+export async function deleteProfile(id: number): Promise<void> {
   await fetch(`${API_URL}/${id}`, {
     method: 'DELETE',
   });

@@ -2,11 +2,11 @@
 import React, { useState } from 'react'
 import Slider from '@mui/material/Slider';
 
-import '../assets/styles/LogMeal.css'
 import MealChart, { MacroSet } from "../components/MealChart";
 import Header from "../components/Header";
 import { createMeal } from '../api/meal/meal';
 import DbMeal from '../api/interfaces/meal.interface';
+import '../assets/styles/logMeal.css';
 
 const formDataToDbMeal = (formData: typeof initialFormData, profileId: number): DbMeal => {
   return {

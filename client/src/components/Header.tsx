@@ -3,8 +3,9 @@
 // If logged in, show the profile name and settings
 // If not present on the index while logged in, show the log meal button
 import { Link, useLocation } from 'react-router-dom'
-import '../assets/styles/Header.css'
+
 import GoToLogMealButton from './GoToLogMealButton';
+import '../assets/styles/header.css'
 
 export default function Header() {
   const location = useLocation();
