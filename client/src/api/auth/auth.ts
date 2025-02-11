@@ -1,6 +1,6 @@
 import Profile from "../interfaces/profile.interface";
 
-const login = async (userInfo: Profile) => {
+export async function login(userInfo: Profile) {
   try {
     const response = await fetch('/auth/login', {
       method: 'POST',
@@ -20,5 +20,3 @@ const login = async (userInfo: Profile) => {
     throw error;
   }
 }
-
-export { login };

@@ -1,4 +1,4 @@
-export const requestHandler = async (url: string, method: string, options?: string[], data?: unknown) => {
+export async function requestHandler(url: string, method: string, options?: string[], data?: unknown) {
   const response = await fetch(url, {
     method: method,
     ...options,
