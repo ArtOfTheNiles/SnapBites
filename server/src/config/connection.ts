@@ -1,31 +1,32 @@
 import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
 
-
 dotenv.config();
 
-
 const sequelize = new Sequelize({
-  dialect: 'postgres',
-  host: process.env.DB_HOST || 'localhost',
-  username: process.env.DB_USER ?? 'postgres',
-  password: process.env.DB_PASSWORD ?? '',
-  database: process.env.DB_NAME || 'snapbites',
-  logging: false, 
+    database: process.env.DB_NAME || 'snapbites',
+    username: process.env.DB_USER || '',
+    password: process.env.DB_PASSWORD || '',
+    host: process.env.DB_HOST || 'localhost',
+    dialect: 'postgres',
+    logging: (msg) => console.log(`[Database] ${msg}`),
+    pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000,
+    },
 });
 
+async function initializeDatabase(): Promise<void> {
+    try {
+        await sequelize.authenticate();
+        console.log(' Connection to database successful');
+    } catch (error: unknown) {
+        console.error(' Database connection failed:', error);
+    }
+}
 
-const testConnection = async () => {
-  try {
-    await sequelize.authenticate();
-    console.log('Database connection established successfully.');
-    console.log('Connected to database:', process.env.DB_NAME || 'snapbites');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-    console.log('Check that PostgreSQL is running and the database exists');
-  }
-};
-
-testConnection();
+initializeDatabase();
 
 export default sequelize;

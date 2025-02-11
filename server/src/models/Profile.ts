@@ -1,16 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
-import sequelize from '../config/connection';
-import bcrypt from 'bcrypt';
-
+import sequelize from '../config/connection.js';
 
 class Profile extends Model {
-    public id!: number;
-    public username!: string;
-    public password!: string;
-
-    public async validatePassword(password: string): Promise<boolean> {
-        return bcrypt.compare(password, this.password);
-    }
 }
 
 Profile.init(
@@ -22,26 +13,21 @@ Profile.init(
         },
         username: {
             type: DataTypes.STRING(255),
-            allowNull: true,
+            allowNull: false,
+            unique: true,
         },
         password: {
             type: DataTypes.STRING(255),
-            allowNull: true,
-        }
+            allowNull: false,
+        },
     },
     {
         sequelize,
-        modelName: 'Profile',                           
-        tableName: 'profile',                                    
-        timestamps: false,        
-        hooks: {
-            beforeSave: async (profile: Profile) => {
-                if (profile.changed('password')) {
-                    profile.password = await bcrypt.hash(profile.password, 10);
-                }
-            }
-        }
+        modelName: 'Profile',
+        tableName: 'profile',
+        timestamps: false,
     }
 );
 
 export default Profile;
+
