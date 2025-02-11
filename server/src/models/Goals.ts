@@ -7,7 +7,6 @@ class Goals extends Model {
     public id!: number;
     public profile!: number;
     public name!: string;
-    public description?: string;
     public created!: Date;
     public finish_line?: Date;
 }
