@@ -1,5 +1,5 @@
 import DbMeal from '../api/interfaces/meal.interface'
-import '../assets/styles/MealCard.css'
+import '../assets/styles/mealCard.css'
 
 // A quick representation of a meal for the user
 // Should have an image, name, and buttons for editing or favoriting

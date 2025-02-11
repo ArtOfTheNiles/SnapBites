@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import MealCard from "../components/MealCard";
 import DbMeal from "../api/interfaces/meal.interface";
-import '../assets/styles/mealHistory.css';
 import { getMeals } from "../api/meal/meal";
+import '../assets/styles/mealHistory.css';
 
 // This is the Meal History page, which is used to display the user's meal history.
 export default function MealHistory() {
