@@ -1,6 +1,6 @@
 import { requestHandler } from "./requestHandler";
 
-// TODO: add functions for real routes
+// TODO: refactor api calls to use requestHandler
 export const hello = async () => {
   return await requestHandler("/api", "GET");
 };

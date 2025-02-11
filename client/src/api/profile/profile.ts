@@ -1,8 +1,4 @@
-class Profile {
-  public id!: number;
-  public username!: string;
-  public password!: string;
-}
+import Profile from "../interfaces/profile.interface";
 
 const API_URL = '/api/profile';
 

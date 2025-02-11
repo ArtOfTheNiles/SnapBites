@@ -1,13 +1,6 @@
-const API_URL = '/api/profile/goal';
+import Goals from "../interfaces/goal.interface";
 
-interface Goals {
-  id: number;
-  profile: number;
-  name: string;
-  description?: string;
-  created: Date;
-  finish_line?: Date;
-}
+const API_URL = '/api/profile/goal';
 
 export async function createGoal(goal: Goals): Promise<Goals> {
   const response = await fetch(API_URL, {

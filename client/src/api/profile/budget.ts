@@ -1,13 +1,6 @@
-const API_URL = '/api/profile/budget';
+import MacroBudget from "../interfaces/budget.interface";
 
-interface MacroBudget {
-  id: number;
-  profile: number;
-  calories: number;
-  carbohydrates: number;
-  fat: number;
-  protein: number;
-}
+const API_URL = '/api/profile/budget';
 
 export async function createBudget(budget: MacroBudget): Promise<MacroBudget> {
   const response = await fetch(API_URL, {

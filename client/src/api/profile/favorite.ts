@@ -1,9 +1,6 @@
-const API_URL = '/api/profile/favorite';
+import Favorites from "../interfaces/favorite.interface";
 
-interface Favorites {
-  id: number;
-  profile: number;
-}
+const API_URL = '/api/profile/favorite';
 
 export async function createFavorite(favorite: Favorites): Promise<Favorites> {
   const response = await fetch(API_URL, {
