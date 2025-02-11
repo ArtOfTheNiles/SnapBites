@@ -1,0 +1,67 @@
+[
+  {
+    "id": 1,
+    "image_url": "https://example.com/images/grilled-chicken-salad.jpg",
+    "name": "Grilled Chicken Salad",
+    "weight_est": 350,
+    "calories": 420,
+    "carbohydrates": 12,
+    "fats": 22,
+    "proteins": 45,
+    "fiber": 5,
+    "time_eaten": "2025-02-10T12:30:00Z",
+    "favorite": 1,
+    "profile": 1
+  },
+  {
+    "id": 2,
+    "name": "Vegetarian Buddha Bowl",
+    "weight_est": 400,
+    "calories": 550,
+    "carbohydrates": 65,
+    "fats": 25,
+    "proteins": 18,
+    "fiber": 12,
+    "time_eaten": "2025-02-10T18:15:00Z",
+    "profile": 1
+  },
+  {
+    "id": 3,
+    "image_url": "https://example.com/images/salmon-quinoa.jpg",
+    "name": "Grilled Salmon with Quinoa",
+    "weight_est": 300,
+    "calories": 480,
+    "carbohydrates": 35,
+    "fats": 28,
+    "proteins": 32,
+    "fiber": 6,
+    "time_eaten": "2025-02-10T19:45:00Z",
+    "favorite": 1,
+    "profile": 2
+  },
+  {
+    "id": 4,
+    "name": "Greek Yogurt with Berries",
+    "weight_est": 200,
+    "calories": 180,
+    "carbohydrates": 25,
+    "fats": 3,
+    "proteins": 15,
+    "fiber": 4,
+    "time_eaten": "2025-02-10T08:00:00Z",
+    "profile": 1
+  },
+  {
+    "id": 5,
+    "image_url": "https://example.com/images/veggie-stir-fry.jpg",
+    "name": "Tofu Vegetable Stir Fry",
+    "weight_est": 380,
+    "calories": 320,
+    "carbohydrates": 42,
+    "fats": 12,
+    "proteins": 22,
+    "fiber": 8,
+    "time_eaten": "2025-02-10T13:20:00Z",
+    "profile": 2
+  }
+]
