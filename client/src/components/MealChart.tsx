@@ -3,16 +3,54 @@
 import React from 'react';
 import Slider from '@mui/material/Slider';
 
-export default function MealChart() {
+export interface MacroSet {
+  protein: number;
+  fat: number;
+  carbs: number;
+  fiber: number;
+}
+
+interface MealChartProps {
+  onMacroChange: (newMacros: MacroSet) => void;
+}
+
+export default function MealChart({ onMacroChange }: MealChartProps) {
   const [protein, setProtein] = React.useState(0);
   const [fat, setFat] = React.useState(0);
   const [carbs, setCarbs] = React.useState(0);
   const [fiber, setFiber] = React.useState(0);
 
-  const handleSliderChange = (sliderID: string) => (_event: Event, newValue: number | number[]) => {
+  const macroSliderHandler = (sliderID: string) => (_event: Event, newValue: number | number[]) => {
     const total = protein + fat + carbs + fiber;
-    if(total >= 100) {
-      // TODO separate view from logic 
+
+    if(newValue === 100) {
+      switch (sliderID) {
+        case 'protein-slider':
+          setProtein(newValue as number);
+          setFat(0);
+          setCarbs(0);
+          setFiber(0);
+          break;
+        case 'fat-slider':
+          setProtein(0);
+          setFat(newValue as number);
+          setCarbs(0);
+          setFiber(0);
+          break;
+        case 'carb-slider':
+          setProtein(0);
+          setCarbs(newValue as number);
+          setFat(0);
+          setFiber(0);
+          break;
+        case 'fiber-slider':
+          setProtein(0);
+          setFat(0);
+          setCarbs(0);
+          setFiber(newValue as number);
+          break;
+        }
+    }else if(total >= 100) {
       switch (sliderID) {
         case 'protein-slider':
           setProtein(newValue as number);
@@ -54,6 +92,7 @@ export default function MealChart() {
           setFiber(newValue as number);
           break;
       }
+      onMacroChange({ protein, fat, carbs, fiber });
     }
   }
 
@@ -61,39 +100,42 @@ export default function MealChart() {
 
   return (
     <div className="meal-chart">
-      <h2>Meal Chart</h2>
       <div className="chart-container">
         <div className="chart">
-          <h2>Total: { protein + fat + carbs + fiber }%</h2>
+          {/* <h2>Total: { protein + fat + carbs + fiber }%</h2> */}
 
           <p>Protein: {protein}%</p>
           <Slider
+            defaultValue={0}
             value={typeof protein === 'number' ? protein : 0}
-            onChange={handleSliderChange('protein-slider')}
+            onChange={macroSliderHandler('protein-slider')}
             id="protein-slider"
             aria-label="protein-slider"
           />
 
           <p>Fat: {fat}%</p>
           <Slider
+            defaultValue={0}
             value={typeof fat === 'number' ? fat : 0}
-            onChange={handleSliderChange('fat-slider')}
+            onChange={macroSliderHandler('fat-slider')}
             id="fat-slider"
             aria-label="fat-slider"
           />
 
           <p>Carbs: {carbs}%</p>
           <Slider
+            defaultValue={0}
             value={typeof carbs === 'number' ? carbs : 0}
-            onChange={handleSliderChange('carb-slider')}
+            onChange={macroSliderHandler('carb-slider')}
             id="carb-slider"
             aria-label="carb-slider"
           />
 
           <p>Fiber: {fiber}%</p>
           <Slider
+            defaultValue={0}
             value={typeof fiber === 'number' ? fiber : 0}
-            onChange={handleSliderChange('fiber-slider')}
+            onChange={macroSliderHandler('fiber-slider')}
             id="fiber-slider"
             aria-label="fiber-slider"
           />

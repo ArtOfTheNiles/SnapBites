@@ -6,3 +6,11 @@
   background-color: var(--midnight-green);
   border-radius: 5px;
 }
+
+.chart-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}

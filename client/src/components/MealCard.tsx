@@ -1,14 +1,17 @@
-// A quick representation of a meal for the user
-// Should have an image, name, and buttons for editing or favoriting
+import DbMeal from '../api/interfaces/meal.interface'
 import '../assets/styles/MealCard.css'
 
-export default function MealCard() {
+// A quick representation of a meal for the user
+// Should have an image, name, and buttons for editing or favoriting
+export default function MealCard(props: DbMeal) {
   return (
-    <div className="meal-card">
-      <img src="https://picsum.photos/200" alt="Meal" />
-      <h3>Meal Name</h3>
+    <li className="meal-card">
+      {props.image_url && <img src={props.image_url} alt={props.name} />}
+      <h3>{props.name}</h3>
+      <p>Calories: {props.calories}</p>
+      <p>Time: {new Date(props.time_eaten).toLocaleString()}</p>
       <button>Edit</button>
       <button>Favorite</button>
-    </div>
+    </li>
   )
 }
