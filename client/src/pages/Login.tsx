@@ -2,12 +2,15 @@ import { useState, FormEvent, ChangeEvent } from "react";
 
 import AuthService from '../authService';
 import { login } from "../api/auth/auth.ts";
+import Header from "../components/Header.tsx";
+import '../assets/styles/login.css';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
     username: '',
     password: ''
   });
+  const [error, setError] = useState('');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -18,37 +21,49 @@ const Login = () => {
   };
 
   const handleSubmit = async (e: FormEvent) => {
+    setError('');
     e.preventDefault();
     try {
       const data = await login(loginData);
       AuthService.login(data.token);
     } catch (err) {
-      console.error('Failed to login', err);
+      setError('Failed to authorize login: ' + err);
     }
   };
 
   return (
-    <div className='container'>
-      <form className='form' onSubmit={handleSubmit}>
+    <>
+    <Header />
+
+    <div className='login-page'>
+      <form className='login-form' onSubmit={handleSubmit}>
         <h1>Login</h1>
-        <label >Username</label>
-        <input 
-          type='text'
-          name='username'
-          value={loginData.username || ''}
-          onChange={handleChange}
-        />
-      <label>Password</label>
-        <input 
-          type='password'
-          name='password'
-          value={loginData.password || ''}
-          onChange={handleChange}
-        />
+        <h2>Use those credentials for <em>good</em></h2>
+        <div className='error'>
+          {error && <p>{error}</p>}
+        </div>
+        <div className='login-container'>
+          <label >Username</label>
+          <input 
+            type='text'
+            name='username'
+            aria-label='username'
+            value={loginData.username || ''}
+            onChange={handleChange}
+          />
+          <label>Password</label>
+          <input 
+            type='password'
+            name='password'
+            aria-label='password'
+            value={loginData.password || ''}
+            onChange={handleChange}
+          />
+        </div>
         <button type='submit'>Login</button>
       </form>
     </div>
-    
+    </>
   )
 };
 

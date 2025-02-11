@@ -7,6 +7,7 @@ export default function Profile() {
     <Header />
     <div className="profile">
       <h1>Profile</h1>
+      <h2>There's just <em>something</em> about you</h2>
     </div>
     </>
   )
