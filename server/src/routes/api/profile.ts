@@ -8,7 +8,15 @@ const router = Router();
 
 router.get('/', authenticateToken, async (req: Request, res: Response) => {
     try {
+        const profile = await Profile.findAll({
+            attributes: ['id', 'username'],
+        });
+        
 
+        return res.status(200).json({
+            success: true,
+            data: profile,
+        })
 
 
 
