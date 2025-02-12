@@ -1,10 +1,10 @@
-import Profile from './Profile';
-import MacroBudget from './MacroBudget';
-import Meal from './Meal';
-import Goals  from './Goals';
-import Favorites from './Favorites';
+import Profile from './Profile.js';
+import MacroBudget from './MacroBudget.js';
+import Meal from './Meal.js';
+import Goals from './Goals.js';
+import Favorites from './Favorites.js';
 
-// Set up associations between models
+
 Profile.hasMany(MacroBudget, {
     foreignKey: 'profile',
     as: 'macroBudgets'

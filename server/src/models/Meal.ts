@@ -1,22 +1,8 @@
 import { Model, DataTypes } from 'sequelize';
-import sequelize from '../config/connection';
-import Profile from './Profile';
+import sequelize from '../config/connection.js';
+import Profile from './Profile.js';
 
-class Meal extends Model {
-    public id!: number;
-    public image_url?: string;
-    public name!: string;
-    public weight_est?: number;
-    public calories!: number;
-    public carbohydrates?: number;
-    public fats?: number;
-    public proteins?: number;
-    public fiber?: number;
-    public time_eaten!: Date;
-    public favorite?: number;
-    public profile!: number;
-}    
-
+class Meal extends Model {}
 
 Meal.init(
     {
@@ -31,7 +17,7 @@ Meal.init(
         },
         name: {
             type: DataTypes.STRING(255),
-            allowNull: true,
+            allowNull: false,
         },
         weight_est: {
             type: DataTypes.DECIMAL(10, 2),
@@ -39,7 +25,7 @@ Meal.init(
         },
         calories: {
             type: DataTypes.DECIMAL(10, 2),
-            allowNull: true,
+            allowNull: false,
         },
         carbohydrates: {
             type: DataTypes.DECIMAL(10, 2),
@@ -55,20 +41,22 @@ Meal.init(
         },
         time_eaten: {
             type: DataTypes.DATE,
-            allowNull: true,
+            allowNull: false,
             defaultValue: DataTypes.NOW,
         },
         favorite: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.BOOLEAN,  
             allowNull: true,
         },
-        profile: {
+        profileId: {
             type: DataTypes.INTEGER,
-            allowNull: true,
+            allowNull: false,
             references: {
-                model: Profile,
+                model: Profile, 
                 key: 'id',
             },
+            onUpdate: 'CASCADE',
+            onDelete: 'CASCADE',
         },
     },
     {
@@ -77,7 +65,7 @@ Meal.init(
         tableName: 'meal',
         timestamps: false,
     }
-
 );
 
 export default Meal;
+
