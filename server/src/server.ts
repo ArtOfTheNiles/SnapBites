@@ -16,20 +16,26 @@ app.use('/api/auth', authRoutes);
 app.use('/api/meals', mealRoutes);
 
 
-app._router.stack.forEach((r) => {
-    if (r.route && r.route.path) {
-        console.log(` Registered route: ${r.route.path}`);
+function logRegisteredRoutes(app: Application): void {
+    if (app._router && app._router.stack) {
+        app._router.stack.forEach((r: any) => {  
+            if (r.route && r.route.path) {
+                console.log(` Registered route: ${r.route.path}`);
+            }
+        });
     }
-});
+}
 
-
-sequelize.sync({ alter: true }).then(() => {  
-    app.listen(PORT, () => {
-        console.log(` Server running on port ${PORT}`);
+sequelize.sync({ alter: true })
+    .then(() => {
+        app.listen(PORT, () => {
+            console.log(` Server running on port ${PORT}`);
+            logRegisteredRoutes(app);
+        });
+    })
+    .catch((err: unknown) => {
+        console.error(' Database sync failed:', err);
     });
-}).catch((err: unknown) => {
-    console.error(' Database sync failed:', err);
-});
 
 
 process.on('uncaughtException', (err) => {
@@ -38,11 +44,4 @@ process.on('uncaughtException', (err) => {
 
 process.on('unhandledRejection', (err) => {
     console.error(' Unhandled Rejection:', err);
-});
-
-
-app._router.stack.forEach((r) => {
-  if (r.route && r.route.path) {
-      console.log(` Registered route: ${r.route.path}`);
-  }
 });
