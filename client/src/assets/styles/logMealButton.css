@@ -1,4 +1,5 @@
 .log-meal-button {
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,13 +7,25 @@
   width: 5rem;
   height: 5rem;
   padding: 1rem;
-  background-color: var(--base-dark-gray);
+  color: var(--midnight-green);
+  background-color: var(--pacific-cyan);
   border-radius: 50%;
-  border: 3px solid transparent;
+  border: 3px solid var(--midnight-green);
+  box-shadow: 0 0.5rem 1rem 0.1rem rgba(255, 255, 255, 0.1);
   transition: border-color 0.3s ease;
+}
+
+.nav-container .log-meal-button {
+  box-shadow: none;
 }
 
 .log-meal-button:hover {
   border-color: var(--aquamarine);
 }
 
+@media (prefers-color-scheme: light) {
+  .log-meal-button {
+    /* X Y Diffuse Spread */
+    box-shadow: 0 0.5rem 1rem 0.1rem rgba(0, 20, 51, 0.35);
+  }
+}

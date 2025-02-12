@@ -1,0 +1,34 @@
+.login-form,
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+h2 {
+  /* TRBL */
+  margin: 0 0 5rem 0;
+}
+
+.login-page {
+  /* TRBL */
+  padding: 2rem 2rem 1rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+}
+
+.login-container {
+  padding: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+}
+
+label {
+  align-self: flex-start;
+}
+
+.login-form button {
+  margin: 2rem auto 0;
+}
