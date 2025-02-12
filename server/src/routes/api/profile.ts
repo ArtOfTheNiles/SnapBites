@@ -32,6 +32,14 @@ router.post('/', async (req: Request, res: Response) => {
             return res.status(400).json({ status: 'error', message: 'Please enter all fields' });
         }
 
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const newProfile = await Profile.create({
+            username,
+            password: hashedPassword,
+        });
+
+
 
 
 
