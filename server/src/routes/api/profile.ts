@@ -39,18 +39,28 @@ router.post('/', async (req: Request, res: Response) => {
             password: hashedPassword,
         });
 
-
-
-
-
-
-
-
-
-
-
-
+        return res.status(201).json({
+            success: 'success',
+            data: { id: newProfile.id, username: newProfile.username },
+        });
+    } catch (error) {
+        console.error('Error in POST /api/profile', error);
+        return res.status(500).json({ status: 'error', message: 'Server error' });
     }
+
+ });
+
+    export default router;
+
+
+
+
+
+
+
+
+
+    
 
 
 
