@@ -43,19 +43,24 @@ router.post('/', async (req: Request, res: Response) => {
             success: 'success',
             data: { id: newProfile.id, username: newProfile.username },
         });
-
-
-
-
-
-
-
-
-
-
-
-
+    } catch (error) {
+        console.error('Error in POST /api/profile', error);
+        return res.status(500).json({ status: 'error', message: 'Server error' });
     }
+
+ });
+
+
+
+
+
+
+
+
+
+
+
+    
 
 
 
