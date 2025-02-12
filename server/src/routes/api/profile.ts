@@ -39,6 +39,11 @@ router.post('/', async (req: Request, res: Response) => {
             password: hashedPassword,
         });
 
+        return res.status(201).json({
+            success: 'success',
+            data: { id: newProfile.id, username: newProfile.username },
+        });
+
 
 
 
