@@ -25,6 +25,12 @@ router.get('/', authenticateToken, async (req: Request, res: Response) => {
 
 
 router.post('/', async (req: Request, res: Response) => {
+    try {
+        const { username, password } = req.body;
+
+        if (!username || !password) {
+            return res.status(400).json({ status: 'error', message: 'Please enter all fields' });
+        }
 
 
 
@@ -32,4 +38,15 @@ router.post('/', async (req: Request, res: Response) => {
 
 
 
-}
+
+
+
+
+    }
+
+
+
+
+
+
+});
