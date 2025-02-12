@@ -1,8 +1,16 @@
 import DbMeal from "../interfaces/meal.interface";
-const API_URL = `${import.meta.env.VITE_API_URL}/api/meal`;
+const API_URL = `http://localhost:3001/api/meals`;
+// const API_URL = `${import.meta.env.VITE_API_URL}/api/meals`;
 
 export async function  getMeals (): Promise<DbMeal[]> {
-  const response = await fetch(API_URL);
+  const response = await fetch(API_URL, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${import.meta.env.ADMIN_SECRET}`,
+    },
+  });
+  console.log('This is API URL: ' +API_URL);
   if (!response.ok) {
     throw new Error('Failed to fetch meals');
   }
