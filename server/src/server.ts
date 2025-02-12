@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/api/auth.js';
 import mealRoutes from './routes/api/meals.js';
 import sequelize from './config/connection.js';
+import profileRoutes from './routes/api/profile.js';
 
 dotenv.config(); 
 
@@ -14,6 +15,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/meals', mealRoutes);
+app.use('/api/profile', profileRoutes);
 
 
 function logRegisteredRoutes(app: Application): void {

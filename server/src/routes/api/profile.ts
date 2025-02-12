@@ -28,43 +28,25 @@ router.post('/', async (req: Request, res: Response) => {
     try {
         const { username, password } = req.body;
 
-        if (!username || !password) {
-            return res.status(400).json({ status: 'error', message: 'Please enter all fields' });
+        const existingUser = await Profile.findOne({ where: { username } });
+
+        if (existingUser) {
+            return res.status(400).json({ status: 'error', message: 'Username already exists' });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const newProfile = await Profile.create({
+        const newUser = await Profile.create({
             username,
-            password: hashedPassword,
+            password: hashedPassword
         });
 
-        return res.status(201).json({
-            success: 'success',
-            data: { id: newProfile.id, username: newProfile.username },
-        });
+        return res.status(201).json({ status: 'success', data: newUser });
     } catch (error) {
-        console.error('Error in POST /api/profile', error);
-        return res.status(500).json({ status: 'error', message: 'Server error' });
+        console.error('Error in POST /api/profile:', error);
+        return res.status(500).json({ status: 'error', message: 'Failed to create profile' });
     }
-
- });
+});
 
     export default router;
 
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-});
