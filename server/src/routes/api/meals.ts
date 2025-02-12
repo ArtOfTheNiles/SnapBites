@@ -35,6 +35,29 @@ router.post('/', authenticateToken, async (req: Request, res: Response) => {
     }
 });
 
+router.get('/', authenticateToken, async (req: Request, res: Response) => {
+    try {
+        console.log(' Received GET request for meals');
+        console.log(' Authenticated user ID:', req.user.id);
+
+        const userId = req.user.id;
+        const meals = await Meal.findAll({
+            where: { profileId: userId },
+            attributes: [
+                'id', 'name', 'image_url', 'weight_est', 'calories',
+                'carbohydrates', 'fats', 'proteins', 'time_eaten', 'favorite'
+            ],
+            order: [['time_eaten', 'DESC']]
+        });
+
+        console.log(' Retrieved meals:', meals);
+        
+        return res.status(200).json({ status: 'success', data: meals });
+    } catch (error) {
+        console.error(' Error in GET /api/meals:', error);
+        return res.status(500).json({ status: 'error', message: 'Failed to retrieve meals' });
+    }
+});
 
 
 export default router;
