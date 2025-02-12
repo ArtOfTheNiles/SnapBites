@@ -16,9 +16,10 @@ router.get('/', authenticateToken, async (req: Request, res: Response) => {
         return res.status(200).json({
             success: true,
             data: profile,
-        })
-
-
-
-        
+        });
+    } catch (error) {
+        console.error('Error in GET /api/profile', error);
+        return res.status(500).json({ status: 'error', message: 'Server error' });
     }
+
+    });
