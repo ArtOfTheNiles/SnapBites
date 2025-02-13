@@ -23,11 +23,6 @@ export const authenticateToken = async (
             return;
         }
 
-        if(process.env.ADMIN_SECRET && token === process.env.ADMIN_SECRET) {
-            req.user = { username: 'admin' };
-            return next();
-        }
-
         const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { id: number };
 
         const user = await Profile.findByPk(decoded.id);
