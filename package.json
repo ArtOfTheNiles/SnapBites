@@ -15,7 +15,8 @@
     "client:dev": "cd client && npm run dev",
     "build": "cd client && npm run build",
     "seed": "cd server && npm run seed",
-    "render-build": "npm install && npm run build"
+    "render-build": "npm install && npm run build",
+    "typecheck": "cd client && npm run typecheck"
   },
   "devDependencies": {
     "@types/node": "^22.13.4",
