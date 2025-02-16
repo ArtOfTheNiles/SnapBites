@@ -3,18 +3,20 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const isProduction = process.env.NODE_ENV?.toLowerCase() === 'production';
+
 const sequelize = new Sequelize({
     database: process.env.DB_NAME || 'snapbites',
     username: process.env.DB_USER || '',
     password: process.env.DB_PASSWORD || '',
     host: process.env.DB_HOST || 'localhost',
     dialect: 'postgres',
-    dialectOptions: {
+    dialectOptions: isProduction ? {
         ssl: {
             require: true,
             rejectUnauthorized: false // for Render's SSL connection
         }
-    },
+    } : {},
     logging: (msg) => console.log(`[Database] ${msg}`),
     pool: {
         max: 5,
