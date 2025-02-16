@@ -5,7 +5,12 @@ dotenv.config();
 
 const isProduction = process.env.NODE_ENV?.toLowerCase() === 'production';
 
-const sequelize = new Sequelize(process.env.DB_URL || '', {
+if (!process.env.DB_URL) {
+    console.error('[connection.ts] DB_URL environment variable is not set!');
+    throw new Error('DB_URL is required');
+}
+
+const sequelize = new Sequelize(process.env.DB_URL, {
     dialect: 'postgres',
     dialectOptions: isProduction ? {
         ssl: {
@@ -28,6 +33,7 @@ async function initializeDatabase(): Promise<void> {
         console.log('[connection.ts] Connection to database successful');
     } catch (error: unknown) {
         console.error('[connection.ts] Database connection failed:', error);
+        process.exit(1); // Exit the process if connection fails
     }
 }
 
