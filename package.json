@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npm i && npm run seed && npm run build && npm run start:dev",
-    "start": "npm run client && npm run server",
+    "start": "npm run server",
     "start:dev": "concurrently \"npm run server:dev\" \"wait-on tcp:3001 && npm run client:dev\"",
     "server": "cd server && npm start",
     "server:dev": "cd server && npm run dev",
@@ -56,6 +56,7 @@
     "@types/sequelize": "^4.28.20",
     "@types/typescript": "^0.4.29",
     "dotenv": "^16.4.7",
+    "npm": "^11.1.0",
     "pg": "^8.13.1",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.5"
