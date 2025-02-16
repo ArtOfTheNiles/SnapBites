@@ -12,6 +12,12 @@ const PORT = Number.parseInt(process.env.PORT || '3001');
 
 app.use(express.json());
 
+// Extraneous logs
+console.log('Environment:', process.env.NODE_ENV);
+console.log('Port configuration:', {
+    envPort: process.env.PORT,
+    finalPort: PORT
+});
 
 app.use('/api/auth', authRoutes);
 app.use('/api/meals', mealRoutes);
@@ -29,15 +35,21 @@ function logRegisteredRoutes(app: Application): void {
 }
 
 sequelize.sync({ alter: true })
-    .then(() => {
-        app.listen(PORT, '0.0.0.0', () => {
+.then(() => {
+    app.listen(PORT)
+        .on('error', (error) => {
+            console.error('Server failed to start:', error);
+            process.exit(1);
+        })
+        .on('listening', () => {
             console.log(` Server running on port ${PORT}`);
             logRegisteredRoutes(app);
         });
-    })
-    .catch((err: unknown) => {
-        console.error(' Database sync failed:', err);
-    });
+})
+.catch((err: unknown) => {
+    console.error(' Database sync failed:', err);
+    process.exit(1);
+});
 
 
 process.on('uncaughtException', (err) => {
