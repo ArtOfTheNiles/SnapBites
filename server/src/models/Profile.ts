@@ -1,7 +1,10 @@
-import { Model, DataTypes } from 'sequelize';
+import { Model, InferAttributes, InferCreationAttributes, DataTypes } from 'sequelize';
 import sequelize from '../config/connection.js';
 
-class Profile extends Model {
+class Profile extends Model<InferAttributes<Profile>, InferCreationAttributes<Profile>> {
+    declare id?: number;
+    declare username: string;
+    declare password: string;
 }
 
 Profile.init(
