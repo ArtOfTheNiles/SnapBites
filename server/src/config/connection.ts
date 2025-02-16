@@ -27,16 +27,4 @@ const sequelize = new Sequelize(process.env.DB_URL, {
     },
 });
 
-async function initializeDatabase(): Promise<void> {
-    try {
-        await sequelize.authenticate();
-        console.log('[connection.ts] Connection to database successful');
-    } catch (error: unknown) {
-        console.error('[connection.ts] Database connection failed:', error);
-        process.exit(1); // Exit the process if connection fails
-    }
-}
-
-initializeDatabase();
-
 export default sequelize;
