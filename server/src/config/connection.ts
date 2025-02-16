@@ -9,6 +9,12 @@ const sequelize = new Sequelize({
     password: process.env.DB_PASSWORD || '',
     host: process.env.DB_HOST || 'localhost',
     dialect: 'postgres',
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false // for Render's SSL connection
+        }
+    },
     logging: (msg) => console.log(`[Database] ${msg}`),
     pool: {
         max: 5,
