@@ -28,7 +28,7 @@ function logRegisteredRoutes(app: Application): void {
     if (app._router && app._router.stack) {
         app._router.stack.forEach((r: any) => {  
             if (r.route && r.route.path) {
-                console.log(` Registered route: ${r.route.path}`);
+                console.log(`[server.ts] Registered route: ${r.route.path}`);
             }
         });
     }
@@ -36,29 +36,29 @@ function logRegisteredRoutes(app: Application): void {
 
 sequelize.authenticate()
 .then(() => {
-    console.log('Database connection established successfully.');
+    console.log('[server.ts] Database connection established successfully.');
     sequelize.sync({ alter: true })
     .then(() => {
         app.listen(PORT)
             .on('error', (error) => {
-                console.error('Server failed to start:', error);
+                console.error('[server.ts] Server failed to start:', error);
                 process.exit(1);
             })
             .on('listening', () => {
-                console.log(` Server running on port ${PORT}`);
+                console.log(`[server.ts] Server running on port ${PORT}`);
                 logRegisteredRoutes(app);
             });
     })
 }).catch((err: unknown) => {
-    console.error(' Database sync failed:', err);
+    console.error('[server.ts] Database sync failed:', err);
     process.exit(1);
 });
 
 
 process.on('uncaughtException', (err) => {
-    console.error(' Uncaught Exception:', err);
+    console.error('[server.ts] Uncaught Exception:', err);
 });
 
 process.on('unhandledRejection', (err) => {
-    console.error(' Unhandled Rejection:', err);
+    console.error('[server.ts] Unhandled Rejection:', err);
 });

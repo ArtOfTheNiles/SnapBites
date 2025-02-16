@@ -25,9 +25,9 @@ const sequelize = new Sequelize(process.env.DB_URL || '', {
 async function initializeDatabase(): Promise<void> {
     try {
         await sequelize.authenticate();
-        console.log(' Connection to database successful');
+        console.log('[connection.ts] Connection to database successful');
     } catch (error: unknown) {
-        console.error(' Database connection failed:', error);
+        console.error('[connection.ts] Database connection failed:', error);
     }
 }
 
