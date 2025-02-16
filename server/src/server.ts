@@ -8,7 +8,7 @@ import profileRoutes from './routes/api/profile.js';
 dotenv.config(); 
 
 const app: Application = express();
-const PORT = process.env.PORT || 3001;
+const PORT = Number.parseInt(process.env.PORT || '3001');
 
 app.use(express.json());
 
@@ -30,7 +30,7 @@ function logRegisteredRoutes(app: Application): void {
 
 sequelize.sync({ alter: true })
     .then(() => {
-        app.listen(PORT, () => {
+        app.listen(PORT, '0.0.0.0', () => {
             console.log(` Server running on port ${PORT}`);
             logRegisteredRoutes(app);
         });
