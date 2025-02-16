@@ -34,19 +34,22 @@ function logRegisteredRoutes(app: Application): void {
     }
 }
 
-sequelize.sync({ alter: true })
+sequelize.authenticate()
 .then(() => {
-    app.listen(PORT)
-        .on('error', (error) => {
-            console.error('Server failed to start:', error);
-            process.exit(1);
-        })
-        .on('listening', () => {
-            console.log(` Server running on port ${PORT}`);
-            logRegisteredRoutes(app);
-        });
-})
-.catch((err: unknown) => {
+    console.log('Database connection established successfully.');
+    sequelize.sync({ alter: true })
+    .then(() => {
+        app.listen(PORT)
+            .on('error', (error) => {
+                console.error('Server failed to start:', error);
+                process.exit(1);
+            })
+            .on('listening', () => {
+                console.log(` Server running on port ${PORT}`);
+                logRegisteredRoutes(app);
+            });
+    })
+}).catch((err: unknown) => {
     console.error(' Database sync failed:', err);
     process.exit(1);
 });
