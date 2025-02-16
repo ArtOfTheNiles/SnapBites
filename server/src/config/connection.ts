@@ -5,11 +5,7 @@ dotenv.config();
 
 const isProduction = process.env.NODE_ENV?.toLowerCase() === 'production';
 
-const sequelize = new Sequelize({
-    database: process.env.DB_NAME || 'snapbites',
-    username: process.env.DB_USER || '',
-    password: process.env.DB_PASSWORD || '',
-    host: process.env.DB_HOST || 'localhost',
+const sequelize = new Sequelize(process.env.DB_URL || '', {
     dialect: 'postgres',
     dialectOptions: isProduction ? {
         ssl: {
