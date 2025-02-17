@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npm i && npm run seed && npm run build && npm run start:dev",
-    "start": "npm run server",
     "start:dev": "concurrently \"npm run server:dev\" \"wait-on tcp:3001 && npm run client:dev\"",
     "server": "cd server && npm start",
     "server:dev": "cd server && npm run dev",
@@ -17,6 +16,7 @@
     "build": "cd client && npm run build && cd ../server && npm run build",
     "seed": "cd server && npm run seed",
     "render-build": "npm install && npm run build",
+    "render-start": "npm run client",
     "typecheck": "cd client && npm run typecheck"
   },
   "devDependencies": {
