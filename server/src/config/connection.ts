@@ -13,10 +13,7 @@ if (!process.env.DB_URL) {
 const sequelize = new Sequelize(process.env.DB_URL, {
     dialect: 'postgres',
     dialectOptions: isProduction ? {
-        ssl: {
-            require: true,
-            rejectUnauthorized: false // for Render's SSL connection
-        },
+        ssl: true,
         keepAlive: true
     } : {
         ssl: false
