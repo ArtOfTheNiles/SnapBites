@@ -1,4 +1,5 @@
 import { Sequelize } from 'sequelize';
+import colors from 'colors';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -10,15 +11,28 @@ if (!process.env.DB_URL) {
     throw new Error('DB_URL is required');
 }
 
+const processTag = [
+    colors.cyan('>>-['),
+    colors.underline(colors.white('Snap')),
+    colors.underline(colors.cyan('Bites')),
+    colors.white(']:'),
+    colors.blue('['),
+    colors.cyan.underline('Sequelize'),
+    colors.blue(']-->'),
+].join('');
+
 const sequelize = new Sequelize(process.env.DB_URL, {
     dialect: 'postgres',
     dialectOptions: isProduction ? {
-        ssl: true,
+        ssl: {
+            require: true,
+            rejectUnauthorized: false
+        },
         keepAlive: true
     } : {
         ssl: false
     },
-    logging: (msg) => console.log(`[Database] ${msg}`),
+    logging: (msg) => console.log(`${processTag} ${msg}`),
     pool: {
         max: 5,
         min: 0,

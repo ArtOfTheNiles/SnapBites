@@ -20,14 +20,13 @@ const locator = [
     colors.cyan('[server.ts]'),
 ].join('');
 console.log(`${locator} Environment:`, process.env.NODE_ENV);
-console.log('Port configuration:', {
+console.log(`${locator} Port configuration:`, {
     envPort: process.env.PORT,
     finalPort: PORT,
 });
 console.log(`${locator} Database URL format check:`, {
     hasURL: !!process.env.DB_URL,
     urlLength: process.env.DB_URL?.length,
-    includesSSL: process.env.DB_URL?.includes('ssl=true')
 });
 
 
