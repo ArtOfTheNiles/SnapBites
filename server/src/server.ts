@@ -28,37 +28,54 @@ function logRegisteredRoutes(app: Application): void {
     if (app._router && app._router.stack) {
         app._router.stack.forEach((r: any) => {  
             if (r.route && r.route.path) {
-                console.log(`[server.ts] Registered route: ${r.route.path}`);
+                console.log(`[SnapBites][server.ts] Registered route: ${r.route.path}`);
             }
         });
     }
 }
 
-sequelize.authenticate()
+async function connectSequence(maxRetries = 5, delay = 5000): Promise<void> {
+    for (let i = 0; i < maxRetries; i++) {
+        try {
+            await sequelize.authenticate();
+            console.log('[SnapBites][server.ts] Database connection established successfully.');
+            return;
+        } catch (error) {
+            console.error(`[SnapBites][server.ts] Database connection attempt ${i + 1} failed:`, error);
+            if (i < maxRetries - 1) {
+                console.log(`[SnapBites][server.ts] Retrying in ${delay / 1000} seconds...`);
+                await new Promise(resolve => setTimeout(resolve, delay));
+            }
+        }
+    }
+    throw new Error('[SnapBites][server.ts] Failed to connect to the database after multiple attempts! :sadface:');
+}
+
+connectSequence()
 .then(() => {
-    console.log('[server.ts] Database connection established successfully.');
+    console.log('[SnapBites][server.ts] Database connection established successfully.');
     sequelize.sync({ alter: true })
     .then(() => {
         app.listen(PORT)
             .on('error', (error) => {
-                console.error('[server.ts] Server failed to start:', error);
+                console.error('[SnapBites][server.ts] Server failed to start:', error);
                 process.exit(1);
             })
             .on('listening', () => {
-                console.log(`[server.ts] Server running on port ${PORT}`);
+                console.log(`[SnapBites][server.ts] Server running on port ${PORT}`);
                 logRegisteredRoutes(app);
             });
     })
 }).catch((err: unknown) => {
-    console.error('[server.ts] Database sync failed:', err);
+    console.error('[SnapBites][server.ts] Database sync failed:', err);
     process.exit(1);
 });
 
 
 process.on('uncaughtException', (err) => {
-    console.error('[server.ts] Uncaught Exception:', err);
+    console.error('[SnapBites][server.ts] Uncaught Exception:', err);
 });
 
 process.on('unhandledRejection', (err) => {
-    console.error('[server.ts] Unhandled Rejection:', err);
+    console.error('[SnapBites][server.ts] Unhandled Rejection:', err);
 });

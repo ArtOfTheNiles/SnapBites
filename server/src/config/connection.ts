@@ -16,7 +16,8 @@ const sequelize = new Sequelize(process.env.DB_URL, {
         ssl: {
             require: true,
             rejectUnauthorized: false // for Render's SSL connection
-        }
+        },
+        keepAlive: true
     } : {},
     logging: (msg) => console.log(`[Database] ${msg}`),
     pool: {
@@ -24,7 +25,19 @@ const sequelize = new Sequelize(process.env.DB_URL, {
         min: 0,
         acquire: 30000,
         idle: 10000,
+        evict: 1000,
     },
+    retry: {
+        max: 3,
+        match: [
+            /SequelizeConnectionError/,
+            /SequelizeConnectionRefusedError/,
+            /SequelizeHostNotFoundError/,
+            /SequelizeHostNotReachableError/,
+            /SequelizeInvalidConnectionError/,
+            /SequelizeConnectionTimedOutError/
+        ]
+    }
 });
 
 export default sequelize;
