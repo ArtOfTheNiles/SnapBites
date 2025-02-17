@@ -23,7 +23,6 @@ console.log(`${locator} Environment:`, process.env.NODE_ENV);
 console.log('Port configuration:', {
     envPort: process.env.PORT,
     finalPort: PORT,
-    location: locator
 });
 
 

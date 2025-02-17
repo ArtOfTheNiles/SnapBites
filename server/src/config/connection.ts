@@ -18,7 +18,9 @@ const sequelize = new Sequelize(process.env.DB_URL, {
             rejectUnauthorized: false // for Render's SSL connection
         },
         keepAlive: true
-    } : {},
+    } : {
+        ssl: false
+    },
     logging: (msg) => console.log(`[Database] ${msg}`),
     pool: {
         max: 5,
