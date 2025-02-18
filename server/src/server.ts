@@ -14,20 +14,11 @@ const PORT = Number.parseInt(process.env.PORT || '3001');
 
 app.use(express.json());
 
-// Extraneous logs
+// // Extraneous logs
 const locator = [
     colors.blue('[SnapBites]'),
     colors.cyan('[server.ts]'),
 ].join('');
-console.log(`${locator} Environment:`, process.env.NODE_ENV);
-console.log(`${locator} Port configuration:`, {
-    envPort: process.env.PORT,
-    finalPort: PORT,
-});
-console.log(`${locator} Database URL format check:`, {
-    hasURL: !!process.env.DB_URL,
-    urlLength: process.env.DB_URL?.length,
-});
 
 
 app.use('/api/auth', authRoutes);
