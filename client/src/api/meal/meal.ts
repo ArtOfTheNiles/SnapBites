@@ -1,6 +1,7 @@
 import DbMeal from "../interfaces/meal.interface";
 
 export async function  getMeals (): Promise<DbMeal[]> {
+  console.log('Fetching meals...');
   const response = await fetch('/api/meals', {
     method: 'GET',
     headers: {
