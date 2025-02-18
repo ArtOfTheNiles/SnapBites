@@ -16,7 +16,7 @@
     "build": "cd client && npm run build && cd ../server && npm run build",
     "seed": "cd server && npm run seed",
     "render-build": "npm install && npm run build",
-    "render-start": "npm run server && npm run client",
+    "render-start": "npm run server",
     "typecheck": "cd client && npm run typecheck"
   },
   "devDependencies": {

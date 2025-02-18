@@ -19,7 +19,10 @@
     "exec": "npx tsx src/server.ts"
   },
   "keywords": [],
-  "author": "Nolan Marshke",
+  "authors": [
+    "Nolan Marshke",
+    "Niles Bontrager"
+  ],
   "license": "MIT",
   "description": "",
   "dependencies": {

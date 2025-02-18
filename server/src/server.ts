@@ -1,4 +1,6 @@
 import express, { Application } from 'express';
+import { fileURLToPath } from 'url';
+import path from 'path';
 import colors from 'colors';
 import dotenv from 'dotenv';
 
@@ -6,6 +8,9 @@ import authRoutes from './routes/api/auth.js';
 import mealRoutes from './routes/api/meals.js';
 import sequelize from './config/connection.js';
 import profileRoutes from './routes/api/profile.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config(); 
 
@@ -20,6 +25,7 @@ const locator = [
     colors.cyan('[server.ts]'),
 ].join('');
 
+app.use(express.static(path.join(__dirname, '../../client/dist')));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/meals', mealRoutes);
