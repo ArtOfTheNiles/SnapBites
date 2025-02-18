@@ -1,11 +1,8 @@
 import DbMeal from "../interfaces/meal.interface";
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-console.log('API_URL:', API_URL);
-
 export async function  getMeals (): Promise<DbMeal[]> {
   console.log('Fetching meals...');
-  const response = await fetch(`${API_URL}/api/meals`, {
+  const response = await fetch(`/api/meals`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -22,7 +19,7 @@ export async function  getMeals (): Promise<DbMeal[]> {
 export async function getMealsByProfileId(profileId: number): Promise<DbMeal[]>{
   // TODO: Implement the API call to fetch meals by profile id, something like this:
   // SELECT * FROM meal WHERE profile_id = profileId ORDER BY date DESC
-  const response = await fetch(`${API_URL}/api/meals/${profileId}`);
+  const response = await fetch(`/api/meals/${profileId}`);
   if (!response.ok) {
     throw new Error(`Failed to fetch meals for profile with id ${profileId}`);
   }
@@ -30,7 +27,7 @@ export async function getMealsByProfileId(profileId: number): Promise<DbMeal[]>{
 };
 
 export async function getMealById(id: string): Promise<DbMeal>{
-  const response = await fetch(`${API_URL}/api/meals/${id}`);
+  const response = await fetch(`/api/meals/${id}`);
   if (!response.ok) {
     throw new Error(`Failed to fetch meal with id ${id}`);
   }
@@ -38,7 +35,7 @@ export async function getMealById(id: string): Promise<DbMeal>{
 };
 
 export async function  createMeal (meal: DbMeal): Promise<DbMeal> {
-  const response = await fetch(`${API_URL}/api/meals`, {
+  const response = await fetch(`/api/meals`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -52,7 +49,7 @@ export async function  createMeal (meal: DbMeal): Promise<DbMeal> {
 };
 
 export async function  updateMeal (id: string, meal: Partial<DbMeal>): Promise<DbMeal> {
-  const response = await fetch(`${API_URL}/api/meals/${id}`, {
+  const response = await fetch(`/api/meals/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -66,7 +63,7 @@ export async function  updateMeal (id: string, meal: Partial<DbMeal>): Promise<D
 };
 
 export async function  deleteMeal (id: string): Promise<void> {
-  const response = await fetch(`${API_URL}/api/meals/${id}`, {
+  const response = await fetch(`/api/meals/${id}`, {
     method: 'DELETE',
   });
   if (!response.ok) {
