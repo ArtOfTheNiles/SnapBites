@@ -12,7 +12,7 @@ export async function  getMeals (): Promise<DbMeal[]> {
   if (!response.ok) {
     throw new Error('Failed to fetch meals');
   }
-  return response.json();
+  return await response.json();
 };
 
 export async function getMealsByProfileId(profileId: number): Promise<DbMeal[]>{
