@@ -1,32 +1,56 @@
 import { Sequelize } from 'sequelize';
+import colors from 'colors';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-const sequelize = new Sequelize({
-    database: process.env.DB_NAME || 'snapbites',
-    username: process.env.DB_USER || '',
-    password: process.env.DB_PASSWORD || '',
-    host: process.env.DB_HOST || 'localhost',
+const isProduction = process.env.NODE_ENV?.toLowerCase() === 'production';
+
+if (!process.env.DB_URL) {
+    console.error('[connection.ts] DB_URL environment variable is not set!');
+    throw new Error('DB_URL is required');
+}
+
+const processTag = [
+    colors.cyan('>>-['),
+    colors.underline(colors.white('Snap')),
+    colors.underline(colors.cyan('Bites')),
+    colors.white(']:'),
+    colors.blue('['),
+    colors.cyan.underline('Sequelize'),
+    colors.blue(']-->'),
+].join('');
+
+const sequelize = new Sequelize(process.env.DB_URL, {
     dialect: 'postgres',
-    logging: (msg) => console.log(`[Database] ${msg}`),
+    dialectOptions: isProduction ? {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false
+        },
+        keepAlive: true
+    } : {
+        ssl: false
+    },
+    logging: (msg) => console.log(`${processTag} ${msg}`),
     pool: {
         max: 5,
         min: 0,
         acquire: 30000,
         idle: 10000,
+        evict: 1000,
     },
-});
-
-async function initializeDatabase(): Promise<void> {
-    try {
-        await sequelize.authenticate();
-        console.log(' Connection to database successful');
-    } catch (error: unknown) {
-        console.error(' Database connection failed:', error);
+    retry: {
+        max: 3,
+        match: [
+            /SequelizeConnectionError/,
+            /SequelizeConnectionRefusedError/,
+            /SequelizeHostNotFoundError/,
+            /SequelizeHostNotReachableError/,
+            /SequelizeInvalidConnectionError/,
+            /SequelizeConnectionTimedOutError/
+        ]
     }
-}
-
-initializeDatabase();
+});
 
 export default sequelize;
